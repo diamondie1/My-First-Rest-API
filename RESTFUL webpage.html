@@ -1,0 +1,46 @@
+<html>
+<head>
+    <style>
+    #box
+        {
+            width: 500x;
+            height: 500px;
+            background-color: aqua;
+        }
+    </style>
+    <script>
+        var count = 0;
+        function addOne()
+        {
+            count++;
+            document.getElementById("score").innerHTML = count;
+        }
+        
+        function submitHighScore(){
+				var name = document.getElementById('name').value;
+				
+				var postData = 'name=' + name;
+				postData += '&highScore=' + count;
+				
+				var ajaxRequest = new XMLHttpRequest();
+				ajaxRequest.open('POST', 'http://localhost:8080/ButtonClickerRESTAPI/people/' + name);
+				ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				ajaxRequest.send(postData);
+			}
+    
+    
+    </script>
+    
+    
+    
+    </head>
+<body>
+    <center><h1>Score</h1>
+    <h2 id="score">0</h2></center>
+    
+    <div id="box" onclick="addOne()"></div>
+    <p><input type="text" value="User naame" id="name"><button type="button" onclick="submitHighScore()">Get</button></p>
+    
+    </body>
+
+</html>
